@@ -1,0 +1,29 @@
+{
+  "name": "catch-flight",
+  "version": "1.0.0",
+  "description": "An api endpoint to get flight data from different third party data sources",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rupali-soni/catch-flight.git"
+  },
+  "keywords": [
+    "flight",
+    "api",
+    "flight",
+    "data",
+    "npm"
+  ],
+  "author": "Rupali Soni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rupali-soni/catch-flight/issues"
+  },
+  "homepage": "https://github.com/rupali-soni/catch-flight#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
