@@ -4,7 +4,9 @@
   "description": "An api endpoint to get flight data from different third party data sources",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "env-cmd ./src/config/prod.env node src/index.js",
+    "dev": "env-cmd ./src/config/dev.env nodemon src/index.js",
+    "test": "env-cmd ./config/test.env jest --watch --runInBand"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,16 @@
   },
   "homepage": "https://github.com/rupali-soni/catch-flight#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "md5": "^2.2.1",
+    "request": "^2.88.0",
+    "requestretry": "^4.0.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^8.0.2",
+    "jest": "^24.8.0",
+    "nodemon": "^1.18.9",
+    "supertest": "^3.4.1"
   }
 }
