@@ -70,12 +70,6 @@ const getSortedFlights = ( flights = [], sortParameter = '' ) => {
             //Implement all the sorting: less stops, cheaper, takes shorter
             flightCollections = flights.sort((a, b) => {
                 if(
-                    ( a.slices.length < b.slices.length ) &&
-                    ( a.price < b.price ) &&
-                    ( a.slices.map ( slice => slice.duration ).reduce(collectDuration) < b.slices.map ( slice => slice.duration ).reduce(collectDuration) )
-                ) {
-                    return 1
-                } else if(
                     ( a.slices.length < b.slices.length ) ||
                     ( a.price < b.price ) ||
                     ( a.slices.map ( slice => slice.duration ).reduce(collectDuration) < b.slices.map ( slice => slice.duration ).reduce(collectDuration) )
