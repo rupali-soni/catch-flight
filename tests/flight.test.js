@@ -32,3 +32,10 @@ test('Get flight data sorted by stops', async () => {
     expect(Sortedflights).toEqual(flightsStopsSortMock)
     expect(Sortedflights.length).toBe(3)
 })
+
+test('Get flight data sorted by stops, price and duration', async () => {
+    const flights = flightController.getDistinctFlights(flightsMock)
+    const Sortedflights = flightController.getSortedFlights( flights, '')
+    expect(Sortedflights).toEqual(flightsStopsSortMock)
+    expect(Sortedflights.length).toBe(3)
+})

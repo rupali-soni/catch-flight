@@ -54,20 +54,37 @@ const getSortedFlights = ( flights = [], sortParameter = '' ) => {
         return [];
     }
     let flightCollections;
+
+    const collectDuration = (collectedDuration, newDuration) => collectedDuration + newDuration;
     switch ( sortParameter ) {
         case "price":
             flightCollections = flights.sort((a, b) => a.price < b.price ? -1 : 1)
             break;
         case "duration":
-            const collectDuration = (collectedDuration, newDuration) => collectedDuration + newDuration;
             flightCollections = flights.sort((a, b) => a.slices.map ( slice => slice.duration ).reduce(collectDuration) < b.slices.map ( slice => slice.duration ).reduce(collectDuration) ? -1 : 1)
             break;
         case "stops":
             flightCollections = flights.sort((a, b) => a.slices.length < b.slices.length ? -1 : 1)
             break;
         default:
-            //Implement all the sorting: less stops cheaper takes shorter
-            flightCollections = flights
+            //Implement all the sorting: less stops, cheaper, takes shorter
+            flightCollections = flights.sort((a, b) => {
+                if(
+                    ( a.slices.length < b.slices.length ) &&
+                    ( a.price < b.price ) &&
+                    ( a.slices.map ( slice => slice.duration ).reduce(collectDuration) < b.slices.map ( slice => slice.duration ).reduce(collectDuration) )
+                ) {
+                    return 1
+                } else if(
+                    ( a.slices.length < b.slices.length ) ||
+                    ( a.price < b.price ) ||
+                    ( a.slices.map ( slice => slice.duration ).reduce(collectDuration) < b.slices.map ( slice => slice.duration ).reduce(collectDuration) )
+                ) {
+                    return 1
+                } else {
+                    return -1
+                }
+            })
             break;
     }
     return flightCollections;
@@ -75,7 +92,7 @@ const getSortedFlights = ( flights = [], sortParameter = '' ) => {
 
 
 module.exports = {
-    getFlightData:          getFlightData,
-    getDistinctFlights:     getDistinctFlights,
-    getSortedFlights:       getSortedFlights
+    getFlightData,
+    getDistinctFlights,
+    getSortedFlights
 }
